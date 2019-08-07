@@ -7,7 +7,6 @@ project 1 - A Random Quote Generator
 
 
 //Array named quotes with a quote and source property
-
 let quotes = [
   {
   quote: "Every strike brings me closer to the next home run.",
@@ -77,42 +76,23 @@ let quotes = [
   }
 ];
 
-// console.log(quotes);
-
-/***
-  Create the `getRandomQuote` function to:
-   - Create a variable to store a random number 
-   - Cse the random number to `return` a random quote object from the `quotes` array.
-***/
+// "getRandomQuote" function that returns a random "quotes" array object
 function getRandomQuote ( ) {
   let randomNumber = Math.ceil(Math.random() * quotes.length) - 1;
-    return quotes[randomNumber].quote;
+    return quotes[randomNumber];
 }
 
-console.log(getRandomQuote());
-
-/***
-  Create the `printQuote` function to: 
-   - Call the `getRandomQuote` function and assign it to a variable.
-   - Create a variable for the HTML string and set it equal to an empty string.
-   - Use the HTML template in the instructions or the markup in the index.html file, AND 
-     the random quote vairable to build your HTML string.
-   - Add the quote and source section to the HTML string.
-   - Use an if statement to check for the citation property before adding it to the HTML string.
-   - Use an if statement to check for the year property before adding it to the HTML string.
-   - Don't forget to close that final `p` tag.
-   - Set the `innerHTML` of the `quote-box` div to the HTML string. 
-***/
+//Holds custom HTML string which changes value every time nested "random" variable is called
 function printQuote ( ) {
-  let random = getRandomQuote(quotes);
+  let random = getRandomQuote();
   let html = '';
-  html += '<p class="quotes"> ' + random + ' </p>';
+  html += '<p class="quote"> ' + random.quote + '</p>';
   html += '<p class="source"> ' + random.source;
   if (random.citation) {
-    html += '<span class="citation"> ' + random.citation + ' </span>';
+    html += '<span class="citation"> ' + random.citation + '</span>';
   }
   if (random.year) { 
-    html += '<span class="year"> ' + random.year + ' </span>';
+    html += '<span class="year"> ' + random.year + '</span>';
   }
   html += ' </p>';
   let outputDiv = document.getElementById('quote-box');
@@ -120,16 +100,5 @@ function printQuote ( ) {
   return html;
 }
 
-console.log(printQuote());
-
-/***
-  When the "Show another quote" button is clicked, the event listener 
-  below will be triggered, and it will call, or "invoke", the `printQuote` 
-  function. So do not make any changes to the line of code below this 
-  comment.
-***/
-
-// document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
+// Clicking the "Show another quote" button will generate a new random quote from the quotes array
+document.getElementById('loadQuote').addEventListener("click", printQuote, false);
